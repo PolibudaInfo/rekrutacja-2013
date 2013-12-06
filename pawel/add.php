@@ -1,5 +1,4 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-    "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE HTML>
 
 <html lang="pl">
 
@@ -50,7 +49,7 @@ mysql_close($con);
         <label>Temat:</label><br/>
         <input type="text" name="subject"/><br/>
         <label>Ogłoszenie:</label><br/>
-        <input type="textarea" name="notice"/><br/>
+        <textarea name="notice" rows="8" cols="32"></textarea><br/>
         <button type="submit">Dodaj</button>
     </form>
 <p>
