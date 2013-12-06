@@ -21,24 +21,17 @@ if(!$con){
 
 mysql_select_db('notices');
 
-$count_q = 'SELECT COUNT(*) AS count FROM board';
-$result = mysql_query($count_q);
-$row = mysql_fetch_array($result);
-$count = $row['count'];
-
 if( isset($_POST['category']) &&
     isset($_POST['submitter']) &&
+    isset($_POST['mail']) &&
     isset($_POST['subject']) &&
-    isset($_POST['notice']) &&
-    isset($_POST['mail'])){
-    $query = 'INSERT INTO board (id, date, category, submitter, subject, notice, mail) VALUES (';
-    $query .= ++$count.', ';
-    $query .= '"'.date("Y.m.d").'", ';
+    isset($_POST['notice'])){
+    $query = 'INSERT INTO board (category, submitter, mail, subject, notice) VALUES (';
     $query .= '"'.$_POST['category'].'", ';
     $query .= '"'.$_POST['submitter'].'", ';
+    $query .= '"'.$_POST['mail'].'", ';
     $query .= '"'.$_POST['subject'].'", ';
-    $query .= '"'.$_POST['notice'].'", ';
-    $query .= '"'.$_POST['mail'].'")';
+    $query .= '"'.$_POST['notice'].'")';
 
     mysql_query($query);
 }
@@ -52,12 +45,12 @@ mysql_close($con);
         <input type="text" name="category"/><br/>
         <label>Nazwa ogłaszającego:</label><br/>
         <input type="text" name="submitter"/><br/>
+        <label>E-mail:</label><br/>
+        <input type="text" name="mail"/><br/>
         <label>Temat:</label><br/>
         <input type="text" name="subject"/><br/>
         <label>Ogłoszenie:</label><br/>
         <input type="textarea" name="notice"/><br/>
-        <label>E-mail:</label><br/>
-        <input type="text" name="mail"/><br/>
         <button type="submit">Dodaj</button>
     </form>
 <p>
